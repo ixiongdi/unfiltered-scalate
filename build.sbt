@@ -7,6 +7,8 @@ crossScalaVersions := Seq(
   "2.9.2"
 )
 
+version := "0.6.3"
+
 seq(lsSettings :_*)
 
 libraryDependencies <++= scalaVersion { v => Seq(
