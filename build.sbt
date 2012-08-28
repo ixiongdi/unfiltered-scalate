@@ -1,3 +1,12 @@
+name := "unfiltered-scalate"
+
+organization := "net.databinder"
+
+crossScalaVersions := Seq(
+  "2.9.1",
+  "2.9.2"
+)
+
 seq(lsSettings :_*)
 
 libraryDependencies <++= scalaVersion { v => Seq(
@@ -8,5 +17,3 @@ libraryDependencies <++= scalaVersion { v => Seq(
   "org.mockito" % "mockito-core" % "1.8.5" % "test",
   "org.scala-tools.testing" % "specs_2.9.1" % "1.6.9" % "test"
 ) }
-
-scalaVersion := "2.9.2"
