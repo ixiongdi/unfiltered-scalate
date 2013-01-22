@@ -4,18 +4,27 @@ organization := "net.databinder"
 
 crossScalaVersions := Seq(
   "2.9.1",
-  "2.9.2"
+  "2.9.2",
+  "2.10.0"
 )
 
-version := "0.6.3"
+version := "0.6.5"
 
 seq(lsSettings :_*)
 
-libraryDependencies <++= scalaVersion { v => Seq(
-  "net.databinder" %% "unfiltered" % "0.6.3",
-  "org.fusesource.scalate" % "scalate-core" % "1.5.3",
-  "org.fusesource.scalate" % "scalate-util" % "1.5.3" % "test",
-  "org.scala-lang" % "scala-compiler" % v % "test",
-  "org.mockito" % "mockito-core" % "1.8.5" % "test",
-  "org.scala-tools.testing" % "specs_2.9.1" % "1.6.9" % "test"
-) }
+libraryDependencies <++= scalaVersion { scalaVersion => Seq(
+  "net.databinder" %% "unfiltered" % "0.6.5",
+  "org.scala-lang" % "scala-compiler" % scalaVersion % "test",
+  "org.mockito" % "mockito-core" % "1.9.5" % "test"
+) ++ {
+  val scalateVersion = "1.6.1"
+  val v = if(scalaVersion.startsWith("2.9")) "2.9" else "2.10"
+  Seq(
+    "org.fusesource.scalate" % ("scalate-core_" + v) % scalateVersion,
+    "org.fusesource.scalate" % ("scalate-util_" + v) % scalateVersion % "test"
+  )
+} ++ {
+  val v = if(scalaVersion.startsWith("2.9")) "2.9.1" else "2.10"
+  Seq("org.scala-tools.testing" % ("specs_" + v) % "1.6.9" % "test")
+}
+}
