@@ -8,12 +8,12 @@ crossScalaVersions := Seq(
   "2.10.0"
 )
 
-version := "0.6.5"
+version := "0.6.8"
 
 seq(lsSettings :_*)
 
 libraryDependencies <++= scalaVersion { scalaVersion => Seq(
-  "net.databinder" %% "unfiltered" % "0.6.5",
+  "net.databinder" %% "unfiltered" % "0.6.8",
   "org.scala-lang" % "scala-compiler" % scalaVersion % "test",
   "org.mockito" % "mockito-core" % "1.9.5" % "test"
 ) ++ {
